@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -66,31 +67,35 @@ class MainActivity : ComponentActivity() {
                         )
                     }
                 }
-                Box(
-                    modifier = Modifier
-                        .fillMaxSize()
-                ) {
-                    CameraPreview(controller, Modifier.fillMaxSize())
-
-                    Column(
+                Scaffold { innerPadding ->
+                    Box(
                         modifier = Modifier
-                            .fillMaxWidth()
-                            .align(Alignment.TopCenter)
+                            .fillMaxSize()
+                            .padding(innerPadding)
                     ) {
-                        classifications.forEach {
-                            Text(
-                                text = it.name,
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .background(MaterialTheme.colorScheme.primaryContainer)
-                                    .padding(8.dp),
-                                textAlign = TextAlign.Center,
-                                fontSize = 20.sp,
-                                color = MaterialTheme.colorScheme.primary
-                            )
+                        CameraPreview(controller, Modifier.fillMaxSize())
+
+                        Column(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .align(Alignment.TopCenter)
+                        ) {
+                            classifications.forEach {
+                                Text(
+                                    text = it.name,
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .background(MaterialTheme.colorScheme.primaryContainer)
+                                        .padding(8.dp),
+                                    textAlign = TextAlign.Center,
+                                    fontSize = 20.sp,
+                                    color = MaterialTheme.colorScheme.primary
+                                )
+                            }
                         }
                     }
                 }
+
             }
         }
     }
